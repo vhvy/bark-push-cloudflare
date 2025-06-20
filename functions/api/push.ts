@@ -51,18 +51,22 @@ async function getToken(env: Env): Promise<string> {
     return token;
 }
 
-const defaultIconName = "jinx";
 
-const iconNameList = [
-    "message",
-    "wechat",
-];
+
+const defaultIconName = "jinx";
+const appIconMap = {
+    wechat: "wechat",
+    message: "message",
+    weixin: "wechat",
+    微信: "wechat",
+    短信: "message",
+};
 
 function getIconPath(url: string, appName: string) {
 
     appName = appName.toLowerCase();
 
-    let iconName = iconNameList.includes(appName) ? appName : defaultIconName;
+    let iconName = appIconMap[appName] ? appIconMap[appName] : defaultIconName;
 
     return `${url}/assets/${iconName}.png`;
 }
