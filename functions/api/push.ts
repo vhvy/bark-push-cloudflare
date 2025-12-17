@@ -60,6 +60,7 @@ const appIconMap = {
     weixin: "wechat",
     微信: "wechat",
     短信: "message",
+    mikrotik: "mikrotik"
 };
 
 function getIconPath(url: string, appName: string) {
