@@ -1,19 +1,20 @@
 {
-  "name": "bark-push",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "wrangler pages dev public --kv=PUSH_KV"
-  },
-  "keywords": [],
-  "author": "vhvy",
-  "license": "MIT",
-  "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230404.0",
-    "typescript": "^5.0.4"
-  },
-  "dependencies": {
-    "jose": "^4.14.1"
-  }
+	"name": "bark-push-cloudflare",
+	"version": "0.0.0",
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev --ip=0.0.0.0",
+		"start": "wrangler dev",
+		"test": "vitest",
+		"cf-typegen": "wrangler types"
+	},
+	"devDependencies": {
+		"@cloudflare/vitest-pool-workers": "^0.8.19",
+		"typescript": "^5.5.2",
+		"vitest": "~3.2.0",
+		"wrangler": "^4.55.0"
+	},
+	"dependencies": {
+		"jose": "^6.1.3"
+	}
 }

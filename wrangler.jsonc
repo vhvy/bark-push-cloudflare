@@ -1,0 +1,23 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "bark-push-cloudflare",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-12-17",
+	"observability": {
+		"enabled": true
+	},
+	"assets": {
+		"directory": "./public/",
+		"binding": "ASSETS"
+	},
+	"kv_namespaces": [
+    {
+      "binding": "BARK_PUSH_KEY",
+      "id": "e29908ea7dfa4692bb58ca950a201118"
+    }
+  ]
+}
