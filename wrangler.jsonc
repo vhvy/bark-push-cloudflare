@@ -19,5 +19,7 @@
       "binding": "BARK_PUSH_KEY",
       "id": "e29908ea7dfa4692bb58ca950a201118"
     }
-  ]
+  ],
+	"workers_dev": false,
+	"preview_urls": false
 }
