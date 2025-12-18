@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "bark-push-cloudflare",
+	"name": "bark-push-cloudflare123",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-12-17",
 	"observability": {
