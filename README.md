@@ -9,37 +9,32 @@ Bark 支持自定义推送图标，但 Worker 不能返回图片，而 Cloudflar
 
 ### 如何使用
 
-1. 克隆本项目，然后在 Cloudflare Pages 中通过`连接到Git`创建项目。
+0. 在 Cloudflare Dashboard 中创建一个 `Workers KV`。
 
-2. 创建过程中的构建设置：
+1. 克隆本项目到本地，修改`wrangler.jsonc`中`kv_namespaces[0]`的 ID 为上一步创建的`KV` ID。
 
-    + 框架：         `None`
-    + 构建命令：     `npm i`
-    + 构建输出目录： `/public`
+2. 如果你准备绑定自己的域名，则跳过本步骤，进行下一步。
+   + 修改修改`wrangler.jsonc`中`workers_dev`为 true, 这样可以使用 Cloudflare 提供的子域名。
 
-![1](/examples/1.png)
+3. 提交 commit && push。
+   
+4. 在 Cloudflare Workers 中选择`Create application`，通过`Continue with Github`创建项目。
 
-3. 环境变量：
+5. 创建过程中的构建设置保持默认，选择 Deploy
+    ![create-example](/examples/create-example.png)
 
+6. 打开本地项目，复制 `.env.example` 为 `.env` 文件，并修改其中的内容
     + AUTH_KEY_ID： 见灵感来源文章
     + TEAM_ID:      同上
     + DEVICE_TOKEN： 从 iOS Bark App 中获取
     + VERIFY_TOKEN:  自行设置，调用接口时携带在 header 中鉴权用
     + PRIVATE_KEY： 填写 https://github.com/Finb/bark-server/releases 中`AuthKey_LH4T9V5U4R_5U8LBRXG3A.p8` 的内容。
 
-![2](/examples/2.png)
-
-4. 在 Cloudflare Worker KV 中创建一个 KV。
-
-5. Cloudflare Pages 项目设置/函数中绑定刚才创建的KV，变量名称为`PUSH_KV`。
-
-![3](/examples/3.png)
-
-6. Cloudflare Pages 项目部署/所有部署，重新发起部署，因为刚才绑定的 KV 需要重新部署才能生效。
-
-![4](/examples/4.png)
-
-7. 如何调用：
+7. 在项目根目录执行 `pnpm install`安装依赖，然后执行`pnpm run dev`, 此时会自动拉起浏览器进行给命令行工具`wrangler`的授权。
+   
+8. 授权完成后，在项目根目录执行`pnpm run set-env`，上传环境变量到项目中，上传完成后项目会自动触发重部署。
+   
+9.  如何调用：
     + 请求方法: GET
     + 请求路径: /api/push
     + 携带Url参数(不带*的为可选)
@@ -53,4 +48,4 @@ Bark 支持自定义推送图标，但 Worker 不能返回图片，而 Cloudflar
 
 8. 如何增加内置图标
 
-将项目克隆到本地，将`png`格式的图片放到项目`/public/assets/`文件夹下，并将图片名称加入`functions/api/push`中的`iconNameList`数组，然后推送到`Github`，`Cloudflare Pages`会自动触发部署。
+将`png`格式的图片放到项目`/public/images/`文件夹下，并将图片名称加入`src/index.ts`中的`appIconMap`对象，然后推送到`Github`，`Cloudflare Workers`会自动触发部署。

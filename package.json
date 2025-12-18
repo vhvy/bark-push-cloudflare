@@ -6,7 +6,8 @@
 		"dev": "wrangler dev --ip=0.0.0.0",
 		"start": "wrangler dev",
 		"test": "vitest",
-		"cf-typegen": "wrangler types"
+		"cf-typegen": "wrangler types",
+		"set-env": "wrangler secret bulk .env"
 	},
 	"devDependencies": {
 		"@cloudflare/vitest-pool-workers": "^0.8.19",
