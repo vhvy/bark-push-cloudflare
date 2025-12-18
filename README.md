@@ -7,7 +7,7 @@
 
 Bark 支持自定义推送图标，但 Worker 不能返回图片，而 Cloudflare Pages 支持集成 Worker，于是乎就用 Cloudflare Pages 完成了这个小工具。
 
-### 如何使用
+### 如何部署
 
 0. 在 Cloudflare Dashboard 中创建一个 `Workers KV`。
 
@@ -33,8 +33,10 @@ Bark 支持自定义推送图标，但 Worker 不能返回图片，而 Cloudflar
 7. 在项目根目录执行 `pnpm install`安装依赖，然后执行`pnpm run dev`, 此时会自动拉起浏览器进行给命令行工具`wrangler`的授权。
    
 8. 授权完成后，在项目根目录执行`pnpm run set-env`，上传环境变量到项目中，上传完成后项目会自动触发重部署。
+
+### Q&A
    
-9.  如何调用：
+1. 如何调用：
     + 请求方法: GET
     + 请求路径: /api/push
     + 携带Url参数(不带*的为可选)
@@ -46,6 +48,6 @@ Bark 支持自定义推送图标，但 Worker 不能返回图片，而 Cloudflar
 ![5](/examples/5.png)
 ![6](/examples/6.png)
 
-8. 如何增加内置图标
+2. 如何增加内置图标
 
 将`png`格式的图片放到项目`/public/images/`文件夹下，并将图片名称加入`src/index.ts`中的`appIconMap`对象，然后推送到`Github`，`Cloudflare Workers`会自动触发部署。
